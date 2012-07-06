@@ -1,0 +1,28 @@
+name:                commando
+version:             0.1.0.0
+synopsis:            A monadic command-line option parser
+description:         A monadic command-line option parser
+license:             BSD3
+license-file:        LICENSE
+author:              Hideyuki Tanaka
+maintainer:          Hideyuki Tanaka <tanaka.hideyuki@gmail.com>
+copyright:           (c) 2012, Hideyuki Tanaka
+category:            System
+build-type:          Simple
+cabal-version:       >=1.8
+
+source-repository head
+  type:                git
+  location:            https://github.com/tanakh/commando.git
+
+library
+  exposed-modules:     System.Console.CmdLine
+  build-depends:       base ==4.5.*
+                     , mtl >= 2.1
+                     , data-lens-fd
+                     , data-lens-template
+
+test-suite commando-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      dist
+  main-is:             ../test.hs
