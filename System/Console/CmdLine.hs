@@ -145,7 +145,7 @@ initCmdLineState = do
 
 newtype CmdLine a
   = CmdLine { unCmdLine :: StateT CmdLineState IO a }
-  deriving (Functor, Applicative, Monad, MonadIO, MonadState CmdLineState)
+  deriving (Functor, Applicative, Monad, MonadState CmdLineState)
 
 runCmdLine :: CmdLine a -> IO a
 runCmdLine cmdline = do
@@ -200,7 +200,7 @@ sub name m = assert False undefined
 opt :: (Typeable a, Read a, Show a)
        => String -> Maybe Char -> Maybe a -> Maybe String -> CmdLine a
 opt name sname defv help = do
-  ior <- liftIO $ newIORef defv
+  ior <- CmdLine $ liftIO $ newIORef defv
   CmdLine $ focus clCommandL $ cmdOptionsL %=
     (Option (Just name) sname defv ior rdr help :)
   return $ fromJust $ unsafePerformIO $ readIORef ior
